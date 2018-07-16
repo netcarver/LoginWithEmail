@@ -50,7 +50,7 @@ class LoginWithEmail extends WireData implements Module
             $mail = $mail ? $mail : $mail = wire('sanitizer')->email($event->arguments(0));
 
             // do something only if login is valid email (not username)
-            if ($mail) {
+            if ($mail && false !== strpos($mail, '@')) {
                 // check if a user with the email exists
 
                 $matches = $this->wire('users')->find("include=all, email=$mail");
